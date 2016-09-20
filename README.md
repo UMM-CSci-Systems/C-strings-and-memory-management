@@ -5,6 +5,7 @@
 * [The problems](#the-problems)
  * [Fixing palindromes](#fixing-palindromes)
  * [Disemvowel](#disemvowel)
+* [What to turn in](#what-to-turn-in)
 
 ---
 
@@ -217,3 +218,14 @@ We've provided a `main.c` which you can compile instead of
 strings from the command line. :bangbang: You
 need to make sure you only compile one of `main.c` and
 `disemvowel_test.c`, otherwise you'll get a compiler error about trying to define `main()` twice.
+
+## What to turn in
+
+Your final repository should have:
+
+* Updated palindrome code that still passes the tests, but has no memory leaks according to `valgrind`.
+  * This could involve changes to any and all of `palindrome.c`, `palindrome_test.cpp`, and `main.c`.
+* A working implementation of disemvowel that passes all the tests and has no memory leaks according to `valgrind`. 
+  * As well as completing `disemvowel.c` this could involve changes to `disemvowel_test.cpp` and/or `main.c`.
+
+You shouldn't need to change any of the `.h` files for either part.

@@ -17,7 +17,7 @@ The first is an introduction to a tool for finding memory leaks, and
 the second is a simple exercise on 1-D arrays of characters
 
 For more information (including information on how to use ```valgrind```), see
-the [Lab3 pre-lab](https://github.com/UMM-CSci-Systems/C-programming-pre-lab).
+the [Lab2 pre-lab](https://classroom.github.com/a/304sWPd4).
 
 ## Testing and the Google Test framework
 

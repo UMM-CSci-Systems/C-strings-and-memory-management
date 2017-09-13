@@ -60,9 +60,8 @@ fix has to be made.
 
 ## Getting started
 
-You should first fork this repository to get the
-starter code, and remember to add any collaborators right away. You should
-then clone the repository to whatever machine you're going to work on.
+You should first create your team's repository via the github classroom link in canvas to get the
+starter code.  Remember to add any collaborators right away (or have your teammates follow their own classroom invitation and join your team). You should then clone the repository to whatever machine you're going to work on.
 
 There are several directories here, one for each project.
 We would recommend doing them in the order listed below; there's no

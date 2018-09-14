@@ -17,13 +17,13 @@ The first is an introduction to a tool for finding memory leaks, and
 the second is a simple exercise on 1-D arrays of characters
 
 For more information (including information on how to use ```valgrind```), see
-the [Lab2 pre-lab](https://classroom.github.com/a/304sWPd4).
+the [pre-lab](https://github.com/UMM-CSci-Systems/C-programming-pre-lab).
 
 ## Testing and the Google Test framework
 
 Each of these exercises comes with a set of tests implemented using [the
 Google Test framework for C](https://github.com/google/googletest), aka
-`test`. You won't have to learn anything about `gtest`, but you
+`gtest`. You won't have to learn anything about `gtest`, but you
 will need to be able to compile and run the tests that we provide.
 
 We think the tests are pretty reasonable, but make *no* promises that
@@ -60,9 +60,6 @@ fix has to be made.
 
 ## Getting started
 
-You should first create your team's repository via the github classroom link in canvas to get the
-starter code.  Remember to add any collaborators right away (or have your teammates follow their own classroom invitation and join your team). You should then clone the repository to whatever machine you're going to work on.
-
 There are several directories here, one for each project.
 We would recommend doing them in the order listed below; there's no
 overwhelming reason that you need to do them in any particular order,
@@ -80,7 +77,7 @@ part `foo`):
 -   `foo.c`, which includes the initial stub (or an incorrect version)
     of the program you're working with in that part.
 -   `main.c`, which gives you a "main" function that you can use to
-    run your code separate from the test code. This is
+    run your code independently of the test code. This is
     how people would normally run your program outside
     of the test harness, so you want to make sure that it
     doesn't have any memory leaks. You might also
@@ -112,13 +109,23 @@ g++ -Wall -g -o foo_test foo.c foo_test.cpp -lgtest
 
 _Notice that this uses `g++` instead of `gcc`._ This because the `gtest`
 is technically a C++ library, but it also works for "plain" C code, which
-is all we need it for here. The `-g` flag isn't strictly necessary; it
-causes a variety of useful debugging information to be included in
-the executable, however, which can be *extremely* helpful when using
-tools like `valgrind` or the `gdb` debugger. If you don't include it,
-for example, then those tools won't be able to report accurate or useful
-line numbers or function names. The `-lgtest` tells the compiler to include
-the `gtest` library (that's the `-l` part) when generating the executable.
+is all we need it for here. 
+
+There are several flags here:
+
+* The `-Wall` turns on _all warnings_ (`W` is for "warnings", `all`
+  specifies that we want all of them). This isn't necessary, but the C
+  compiler will quietly do very unexpected things in a variety of
+  circumstances, so it's almost always a good idea to turn on all
+  the warnings so you get a heads up when something odd is happening.
+* The `-g` flag isn't strictly necessary; it causes a variety of useful
+  debugging information to be included in the executable, however, 
+  which can be *extremely* helpful when using tools like `valgrind` 
+  or the `gdb` debugger. If you don't include it, for example, then 
+  those tools won't be able to report accurate or useful line numbers 
+  or function names. 
+* The `-lgtest` tells the compiler to include 
+  the `gtest` library (that's the `-l` part) when generating the executable.
 
 ---
 
@@ -141,7 +148,9 @@ and should probably ask for some help.
 * Make sure you initialize all variables (including variables used to index arrays in loops). C won't give you an error if you fail to initialize something, and sometimes you can get lucky and your tests will accidentally pass because, at least that one time, you happened to get the "right" initial value. That doesn't mean your code is correct, though.
 * Make sure you allocate space for the null terminator `\0` when allocating space for strings.
 
-There are more comprehensive tips and suggestions in `Tips_and_suggestions.md` in the repository.
+There are more comprehensive tips and suggestions in 
+[`Tips_and_suggestions.md`](./Tips_and_suggestions.md) 
+in the repository.
 
 ## Fixing palindromes
 
@@ -210,22 +219,27 @@ ask questions if you're not sure how to interpret what you're seeing.
 
 ## Disemvowel
 
-"Disemvoweling" is the act of removing all the vowels (a, e, i, o, and
-u, both upper and lowercase) from a piece of text. Your task here is to
+"Disemvoweling" is the act of removing all the vowels ('a', 'e', 'i', 'o', and
+'u', both upper and lowercase) from a piece of text. Your task here is to
 write a function
+
 ```C
-char* disemvowel(char* str);
+char *disemvowel(char *str);
 ```
 that takes a null-terminated string, and returns a _new_ null-terminated
 string (i.e., it doesn't modify the original string) that contains the same
 characters in the same order, minus all the vowels. Note that resulting
 array of characters will need to be allocated, and will typically be
 shorter than the input string. It would be desirable to not waste memory
-and only allocate what you actually need for the return string; you
-might find valgrind useful for helping check for leaks.
+and only allocate what you actually need for the return string.
+
+So if the input string is `"goose"` you'd want to return the string
+`"gs"` _and_ you'd want to make sure you only allocated three characters
+for the result (two for 'g' and 's' and one for the `\0` at the end).
 
 Again, make sure that both `disemvowel_test` and `main`
-are free of leaks.
+are free of leaks. You might find `valgrind` useful for helping 
+check for leaks.
 
 ## What to turn in
 

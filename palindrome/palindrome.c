@@ -4,9 +4,9 @@
 
 #include "palindrome.h"
 
-char* str_reverse(char* str) {
+char *str_reverse(char const *str) {
   int len, i;
-  char* result;
+  char *result;
 
   len = strlen(str);
   result = (char*) calloc(len+1, sizeof(char));
@@ -18,7 +18,7 @@ char* str_reverse(char* str) {
   return result;
 }
 
-char* palindrome(char* str) {
+char *palindrome(char const *str) {
   char *rev;
   int i;
   bool result = true;

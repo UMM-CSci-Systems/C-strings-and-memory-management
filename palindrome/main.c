@@ -4,8 +4,8 @@
 
 #include "palindrome.h"
 
-int main(int argc, char* argv[]) {
-  char* line;
+int main(int argc, char *argv[]) {
+  char *line;
   int size;
   
   size = 100;

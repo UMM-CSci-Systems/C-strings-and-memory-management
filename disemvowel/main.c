@@ -3,8 +3,8 @@
 
 #include "disemvowel.h"
 
-int main(int argc, char* argv[]) {
-  char* line;
+int main(int argc, char *argv[]) {
+  char *line;
   size_t size;
   
   size = 100;

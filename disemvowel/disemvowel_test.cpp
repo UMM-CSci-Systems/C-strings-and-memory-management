@@ -25,7 +25,7 @@ TEST(Disemvowel, HandlePunctuation) {
 }
 
 TEST(Disemvowel, HandleLongString) {
-  char* str;
+  char *str;
   int size;
   int i;
 
@@ -44,7 +44,7 @@ TEST(Disemvowel, HandleLongString) {
   free(str);
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

@@ -56,7 +56,7 @@ you end up repeating it!
 
 # Style and clarity: Odds and ends
 
-You should remove "debuggin" print statements from "production" 
+You should remove "debugging" print statements from "production" 
 code (i.e., working code that you turn in).
 
 Don't `#include` `.c` files; you want to compile `.c` files

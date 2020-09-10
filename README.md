@@ -1,15 +1,15 @@
+# C strings and memory management <!-- omit in toc -->
+
 * [Background](#background)
- * [Testing and the Google Test framework](#testing-and-the-google-test-framework)
- * [Fixing memory problems](#fixing-memory-problems)
- * [Getting started](#getting-started)
+  * [Testing and the Google Test framework](#testing-and-the-google-test-framework)
+  * [Fixing memory problems](#fixing-memory-problems)
+  * [Getting started](#getting-started)
 * [The problems](#the-problems)
- * [Fixing palindromes](#fixing-palindromes)
- * [Disemvowel](#disemvowel)
+  * [Fixing palindromes](#fixing-palindromes)
+  * [Disemvowel](#disemvowel)
 * [What to turn in](#what-to-turn-in)
 
----
-
-# Background
+## Background
 
 This lab is a collection of C programming exercises with an
 emphasis on strings (i.e., arrays of characters) and memory management.
@@ -19,7 +19,7 @@ the second is a simple exercise on 1-D arrays of characters
 For more information (including information on how to use ```valgrind```), see
 the [pre-lab](https://github.com/UMM-CSci-Systems/C-programming-pre-lab).
 
-## Testing and the Google Test framework
+### Testing and the Google Test framework
 
 Each of these exercises comes with a set of tests implemented using [the
 Google Test framework for C](https://github.com/google/googletest), aka
@@ -36,7 +36,7 @@ test code to handle memory leaks
 Do be careful to not remove or weaken the tests, though; at a minimum
 you definitely want to be able to pass the tests as given.
 
-## Fixing memory problems
+### Fixing memory problems
 
 Passing the tests is arguably just the first half of each of these problems,
 as it's entirely possible to pass the tests but still have substantial memory
@@ -58,7 +58,7 @@ test code (you could always just change the test code to say everything
 passes!), but if the memory leaks to the test code, then that's where the
 fix has to be made.
 
-## Getting started
+### Getting started
 
 There are several directories here, one for each project.
 We would recommend doing them in the order listed below; there's no
@@ -104,7 +104,7 @@ you're working on). If all goes well, that should generate an executable
 To compile the test code use the following:
 
 ```bash
-g++ -Wall -g -o foo_test foo.c foo_test.cpp -lgtest
+g++ -Wall -g -o foo_test foo.c foo_test.cpp -lgtest -pthread -std=c++0x
 ```
 
 _Notice that this uses `g++` instead of `gcc`._ This because the `gtest`
@@ -126,10 +126,18 @@ There are several flags here:
   or function names. 
 * The `-lgtest` tells the compiler to include 
   the `gtest` library (that's the `-l` part) when generating the executable.
+* The `-pthread` tells the compiler to use the PThread threading library for C/C++.
+  The test library uses pthreads, and you need to tell the compiler that so it
+  uses the right threading tools.
+* The `-std=c++0x` flag tells the compiler _which version_ of C(++) that you want
+  to use. There have been a number of versions of C/C++ over the past few decades
+  (similar to the different versions of Java), and this says we want to use the
+  `c++0x` standard from the 2000s (hence the `0x`). That's necessary or the test
+  code won't compile correctly.
 
 ---
 
-# The problems
+## The problems
 
 :bangbang: Remember: For each problem you should at a minimum
 
@@ -152,7 +160,7 @@ There are more comprehensive tips and suggestions in
 [`Tips_and_suggestions.md`](./Tips_and_suggestions.md) 
 in the repository.
 
-## Fixing palindromes
+### Fixing palindromes
 
 Before you start writing your own C code, we'll start by using `valgrind`
 to identify memory leaks in an existing program. In the
@@ -169,7 +177,7 @@ go into the `palindrome` directory in your project and compile the
 program:
 
 ```bash
-g++ -Wall -g -o palindrome_test palindrome_test.cpp palindrome.c -lgtest
+g++ -Wall -g -o palindrome_test palindrome_test.cpp palindrome.c -lgtest -pthread -std=c++0x
 ```
 
 Run the resulting executable and
@@ -181,7 +189,7 @@ run it "by hand" so you can type random things at it.
 So compile `main`:
 
 ```bash
-g++ -Wall -g -o main main.c palindrome.c
+g++ -Wall -g -o main main.c palindrome.c -pthread -std=c++0x
 ```
 
 You can run this with `./main` and then type lines of text. The program will
@@ -194,13 +202,13 @@ leaks.
 
 Run `valgrind` on _both_ your test executable
 
-```
+```bash
 valgrind --leak-check=full ./palindrome_test
 ```
 
 _and_ the `main` executable, e.g.,
 
-```
+```bash
 valgrind --leak-check=full ./main < sample_input.txt
 ```
 
@@ -217,7 +225,7 @@ leaks.
 The output of `valgrind` can be a bit overwhelming sometime, so definitely
 ask questions if you're not sure how to interpret what you're seeing.
 
-## Disemvowel
+### Disemvowel
 
 "Disemvoweling" is the act of removing all the vowels ('a', 'e', 'i', 'o', and
 'u', both upper and lowercase) from a piece of text. Your task here is to
@@ -226,6 +234,7 @@ write a function
 ```C
 char *disemvowel(char *str);
 ```
+
 that takes a null-terminated string, and returns a _new_ null-terminated
 string (i.e., it doesn't modify the original string) that contains the same
 characters in the same order, minus all the vowels. Note that resulting

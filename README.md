@@ -189,7 +189,7 @@ run it "by hand" so you can type random things at it.
 So compile `main`:
 
 ```bash
-g++ -Wall -g -o main main.c palindrome.c -pthread -std=c++0x
+gcc -Wall -g -o main main.c palindrome.c -pthread -std=c++0x
 ```
 
 You can run this with `./main` and then type lines of text. The program will

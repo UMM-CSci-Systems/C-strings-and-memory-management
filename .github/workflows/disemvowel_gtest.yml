@@ -24,7 +24,7 @@ jobs:
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Compile test code
-      run: gcc -Wall -g -o disemvowel_test disemvowel.c disemvowel_test.cpp -lgtest -pthread -std++0x
+      run: gcc -Wall -g -o disemvowel_test disemvowel.c disemvowel_test.cpp -lgtest -pthread -std=c++0x
       working-directory: disemvowel
     - name: Run test
       run: ./disemvowel_test

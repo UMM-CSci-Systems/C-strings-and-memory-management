@@ -3,10 +3,7 @@ name: gtest disemvowel
 on:
   [push, pull_request]:
     paths:
-    - disemvowel/**
-    paths-ignore:
-    - 'resources/**'
-    - '*.md'
+    - 'disemvowel/**'
 
 jobs:
   build:

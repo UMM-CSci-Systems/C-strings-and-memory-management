@@ -26,11 +26,13 @@ jobs:
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Compile code
-      run: gcc -Wall -g -o disemvowel disemvowel.c disemvowel_main.c
-      run: g++ -Wall -g -o disemvowel_test disemvowel.c disemvowel_test.cpp -lgtest -pthread -std=c++0x
+      run: |
+        gcc -Wall -g -o disemvowel disemvowel.c disemvowel_main.c
+        run: g++ -Wall -g -o disemvowel_test disemvowel.c disemvowel_test.cpp -lgtest -pthread -std=c++0x
       working-directory: disemvowel
     - name: Run test
-      run: valgrind -v --leak-check=full --show-leak-kinds=all ./disemvowel
-      run: valgrind -v --leak-check=full --show-leak-kinds=all ./disemvowel_test
+      run: |
+        valgrind -v --leak-check=full --show-leak-kinds=all ./disemvowel
+        valgrind -v --leak-check=full --show-leak-kinds=all ./disemvowel_test
       working-directory: disemvowel
 

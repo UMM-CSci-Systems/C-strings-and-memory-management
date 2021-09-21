@@ -1,4 +1,4 @@
-name: gtest disemvowel
+name: disemvowel-gtest
 
 on: [push, pull_request]
 #    paths:

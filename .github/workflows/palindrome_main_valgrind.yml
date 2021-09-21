@@ -29,7 +29,7 @@ jobs:
       run: gcc -Wall -g -o palindrome palindrome.c main.c
       working-directory: palindrome
     - name: Run test
-      run: valgrind -v --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./palindrome
+      run: valgrind -v --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./palindrome < sample_input.txt
       working-directory: palindrome
 
 # I need to split these into two tests. Otherwise I'm pretty sure if the second succeeds that

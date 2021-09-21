@@ -12,6 +12,7 @@
   - [Testing and the Google Test framework](#testing-and-the-google-test-framework)
   - [Fixing memory problems](#fixing-memory-problems)
   - [Getting started](#getting-started)
+  - [GitHub Actions & automated tests](#github-actions--automated-tests)
 - [The problems](#the-problems)
   - [Fixing palindromes](#fixing-palindromes)
   - [Disemvowel](#disemvowel)
@@ -142,6 +143,25 @@ There are several flags here:
   (similar to the different versions of Java), and this says we want to use the
   `c++0x` standard from the 2000s (hence the `0x`). That's necessary or the test
   code won't compile correctly.
+
+### GitHub Actions & automated tests
+
+We've set up [GitHub Actions](../../actions) to automatically run
+six tests whenever you push new code up to your repo. All of these
+are also reflected (perhaps with some delay) with the badges
+at the top of this REAMDE.
+
+- `palindrome-gtest` runs the GTest tests on the Palindrome problem;
+  the badge is red if any of those tests fail.
+- `palindrome-main-valgrind` runs `valgrind` on the `main` program
+  for the Palindrome problem; the badge is red if there are any
+  memory leaks in running `valgrind` on that executable.
+- `palindrome-test-valgrind` runs `valgrind` on the executable
+  containing the GTest tests; the badge is red if there are any
+  memory leaks in running `valgrind` on that executable.
+
+There are then the same three tests, but for the Disemvowel
+problem.
 
 ---
 

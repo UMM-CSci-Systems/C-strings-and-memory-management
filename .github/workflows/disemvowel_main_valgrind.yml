@@ -29,7 +29,7 @@ jobs:
       run: gcc -Wall -g -o disemvowel disemvowel.c main.c
       working-directory: disemvowel
     - name: Run test
-      run: valgrind -v --leak-check=full --show-leak-kinds=all ./disemvowel
+      run: valgrind -v --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./disemvowel
       working-directory: disemvowel
 
 # I need to split these into two tests. Otherwise I'm pretty sure if the second succeeds that

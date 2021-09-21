@@ -29,5 +29,5 @@ jobs:
       run: g++ -Wall -g -o disemvowel_test disemvowel.c disemvowel_test.cpp -lgtest -pthread -std=c++0x
       working-directory: disemvowel
     - name: Run test
-      run: valgrind -v --leak-check=full --show-leak-kinds=all ./disemvowel_test
+      run: valgrind -v --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./disemvowel_test
       working-directory: disemvowel

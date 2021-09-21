@@ -1,5 +1,13 @@
 # C strings and memory management <!-- omit in toc -->
 
+[![Palindrome tests](../../workflows/palindrome-gtest/badge.svg)](../../actions?query=workflow%3A"palindrome-gtest")
+[![Palindrome main Valgrind](../../workflows/palindrome-main-valgrind/badge.svg)](../../actions?query=workflow%3A"palindrome-main-valgrind")
+[![Palindrome test Valgrind](../../workflows/palindrome-test-valgrind/badge.svg)](../../actions?query=workflow%3A"palindrome-test-valgrind")
+[![Disemvowel tests](../../workflows/disemvowel-gtest/badge.svg)](../../actions?query=workflow%3A"disemvowel-gtest")
+[![Disemvowel main Valgrind](../../workflows/disemvowel-main-valgrind/badge.svg)](../../actions?query=workflow%3A"disemvowel-main-valgrind")
+[![Disemvowel test Valgrind](../../workflows/disemvowel-test-valgrind/badge.svg)](../../actions?query=workflow%3A"disemvowel-test-valgrind")
+
+
 - [Background](#background)
   - [Testing and the Google Test framework](#testing-and-the-google-test-framework)
   - [Fixing memory problems](#fixing-memory-problems)

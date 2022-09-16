@@ -2,9 +2,39 @@
 
 Some general comments, tip, and suggestions for this lab.
 
+- [Using `^D` to terminate input](#using-d-to-terminate-input)
 - [Correctness](#correctness)
 - [Style and clarity: The big issues](#style-and-clarity-the-big-issues)
 - [Style and clarity: Odds and ends](#style-and-clarity-odds-and-ends)
+
+## Using `^D` to terminate input
+
+The "main" functions (`main.c` in both projects) expect you to type input at
+the keyboard and will keep running until you "tell" them that you're done typing.
+In Unix-based systems typing `^D` (control-D) generates an
+`EOF` (end-of-file) character, which the operating system reads as a request
+to terminate the input.
+
+:warning: Note that `^C` is _not_ the same as `^D`. `^C` terminates the
+program right away, preventing it from doing any finalization or clean-up.
+`^D` just says that we're done providing input. That tends to end the loop
+that's reading the input, but doesn't affect the code that comes after that.
+
+In the terminal session below, the `./palindrome` program would run forever
+waiting for additional input if we didn't type `^D` to tell it that
+we're done providing input.
+
+![Termination session illustrated the use of ^D to terminate input](images/render1663347004591.gif)
+
+> Note that we also show the use of I/O redirection (`< sample_input.txt`).
+> The operating system "knows" when the file ends, so this automatically
+> terminates without us having to do anything special (like enter `^D`).
+
+The use of `^D` also applies when you're running `valgrind` on
+the main functions. :warning: Here you _definitely_ don't want to
+use `^C`, as that will terminate `valgrind` and prevent it from
+finalizing its analysis after your program stops running.
+
 ## Correctness
 
 The one non-subtle issue that has come up in several places was that

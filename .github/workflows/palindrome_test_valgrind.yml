@@ -13,8 +13,8 @@ jobs:
       env:
         cache-name: cache-gtest-lib
       with:
-        key: $${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('/usr/local/lib/libgtest.a') }}
-        path: /usr/local/lib/libgtest.a
+        key: $${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('/usr/lib/libgtest.a') }}
+        path: /usr/lib/libgtest.a
         restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-

@@ -1,6 +1,6 @@
 name: palindrome-main-valgrind
 
-on: [push, pull_request]
+on: push
 #    paths:
 #    - 'palindrome/**'
 
@@ -8,19 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Cache gtest library
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-gtest-lib
-      with:
-        key: $${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('/usr/local/lib/libgtest.a') }}
-        path: /usr/local/lib/libgtest.a
-        restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-    - name: Install gtest manually
-      run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
     - name: Install valgrind
       run: sudo apt-get install -y valgrind
     - name: Check out the code

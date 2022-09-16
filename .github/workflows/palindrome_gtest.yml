@@ -23,7 +23,13 @@ jobs:
             ${{ runner.os }}-
     - if: ${{ steps.cache-gtest-lib.cache-hit != 'true' }}
       name: Install gtest manually
-      run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo mkdir ~/lib && sudo cp -R lib/*.a ~/lib/
+      run: |
+        sudo apt-get install libgtest-dev
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo mkdir ~/lib
+        sudo cp -R lib/*.a ~/lib/
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Compile test code

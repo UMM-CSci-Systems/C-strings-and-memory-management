@@ -28,8 +28,6 @@ jobs:
         cd /usr/src/gtest
         sudo cmake CMakeLists.txt
         sudo make
-        sudo ls ~/lib
-        sudo cp -R lib/*.a ~/lib/
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Compile test code

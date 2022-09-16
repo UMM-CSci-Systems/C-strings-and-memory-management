@@ -183,6 +183,11 @@ or (especially!) 3 pages of code for any of these, you've likely lost the plot
 and should probably ask for some help.
 - Make sure you initialize all variables (including variables used to index arrays in loops). C won't give you an error if you fail to initialize something, and sometimes you can get lucky and your tests will accidentally pass because, at least that one time, you happened to get the "right" initial value. That doesn't mean your code is correct, though.
 - Make sure you allocate space for the null terminator `\0` when allocating space for strings.
+- The "main" functions (`main.c` in both projects) expect you to type input at
+  the keyboard and will keep running until you "tell" them that you're done typing. Use `^D` to tell the system that you're done typing; see
+  [`Tips_and_suggestions.md`](./Tips_and_suggestions.md#using-d-to-terminate-input)
+  for more on this. This also applies when you're running `valgrind` on
+  the main functions.
 
 There are more comprehensive tips and suggestions in
 [`Tips_and_suggestions.md`](./Tips_and_suggestions.md)

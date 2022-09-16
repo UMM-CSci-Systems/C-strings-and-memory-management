@@ -7,7 +7,6 @@
 [![Disemvowel main Valgrind](../../workflows/disemvowel-main-valgrind/badge.svg)](../../actions?query=workflow%3A"disemvowel-main-valgrind")
 [![Disemvowel test Valgrind](../../workflows/disemvowel-test-valgrind/badge.svg)](../../actions?query=workflow%3A"disemvowel-test-valgrind")
 
-
 - [Background](#background)
   - [Testing and the Google Test framework](#testing-and-the-google-test-framework)
   - [Fixing memory problems](#fixing-memory-problems)
@@ -62,7 +61,7 @@ in the test code. If the test code calls some function `f()` that returns an
 array or string that is allocated somewhere in `f` (or a function `f` calls),
 then that memory is lost if the test code doesn't free up that returned array.
 So if `valgrind` says there's a leak where some memory is allocated in a function and then returned to the test code, then the fix is
-_in the test code_. In general we don't encourage you to fiddle with the
+*in the test code*. In general we don't encourage you to fiddle with the
 test code (you could always just change the test code to say everything
 passes!), but if the memory leaks to the test code, then that's where the
 fix has to be made.
@@ -116,13 +115,13 @@ To compile the test code use the following:
 g++ -Wall -g -o frogs_test frogs.c frogs_test.cpp -lgtest -pthread -std=c++0x
 ```
 
-_Notice that this uses `g++` instead of `gcc`._ This because the `gtest`
+*Notice that this uses `g++` instead of `gcc`.* This because the `gtest`
 is technically a C++ library, but it also works for "plain" C code, which
 is all we need it for here.
 
 There are several flags here:
 
-- The `-Wall` turns on _all warnings_ (`W` is for "warnings", `all`
+- The `-Wall` turns on *all warnings* (`W` is for "warnings", `all`
   specifies that we want all of them). This isn't necessary, but the C
   compiler will quietly do very unexpected things in a variety of
   circumstances, so it's almost always a good idea to turn on all
@@ -138,7 +137,7 @@ There are several flags here:
 - The `-pthread` tells the compiler to use the PThread threading library for C/C++.
   The test library uses pthreads, and you need to tell the compiler that so it
   uses the right threading tools.
-- The `-std=c++0x` flag tells the compiler _which version_ of C(++) that you want
+- The `-std=c++0x` flag tells the compiler *which version* of C(++) that you want
   to use. There have been a number of versions of C/C++ over the past few decades
   (similar to the different versions of Java), and this says we want to use the
   `c++0x` standard from the 2000s (hence the `0x`). That's necessary or the test
@@ -170,7 +169,7 @@ problem.
 :bangbang: Remember: For each problem you should at a minimum
 
 - Pass our tests.
-- Have _no_ memory leaks, as confirmed by `valgrind`.
+- Have *no* memory leaks, as confirmed by `valgrind`.
 - Remove any print statements that you used to debug your code before you turn it in.
 
 Also, please don't lose your brains and forget good programming practices just because you're working in a new language. C can be quite difficult to read under the best of circumstances, and using miserable names like `res`, `res2`, and `res3` doesn't help. *Use functions* to break up complicated bits of logic; it's really not fun when a group turns in a solution that is one huge function, especially when there are several instances of repeated logic.
@@ -183,6 +182,11 @@ or (especially!) 3 pages of code for any of these, you've likely lost the plot
 and should probably ask for some help.
 - Make sure you initialize all variables (including variables used to index arrays in loops). C won't give you an error if you fail to initialize something, and sometimes you can get lucky and your tests will accidentally pass because, at least that one time, you happened to get the "right" initial value. That doesn't mean your code is correct, though.
 - Make sure you allocate space for the null terminator `\0` when allocating space for strings.
+- The "main" functions (`main.c` in both projects) expect you to type input at
+  the keyboard and will keep running until you "tell" them that you're done typing. Use `^D` to tell the system that you're done typing; see
+  [`Tips_and_suggestions.md`](./Tips_and_suggestions.md#using-d-to-terminate-input)
+  for more on this. This also applies when you're running `valgrind` on
+  the main functions.
 
 There are more comprehensive tips and suggestions in
 [`Tips_and_suggestions.md`](./Tips_and_suggestions.md)
@@ -229,13 +233,13 @@ on some "canned" input using `./main < sample_input.txt`.
 Look at the code a little and see if you can spot any obvious memory
 leaks.
 
-Run `valgrind` on _both_ your test executable
+Run `valgrind` on *both* your test executable
 
 ```bash
 valgrind --leak-check=full ./palindrome_test
 ```
 
-_and_ the `main` executable, e.g.,
+*and* the `main` executable, e.g.,
 
 ```bash
 valgrind --leak-check=full ./main < sample_input.txt
@@ -248,7 +252,7 @@ above, this might involve making changes to `palindrome.c`, or to `main.c`,
 or to `palindrome_test.cpp`, or some combination of the three files.
 
 :bangbang: Make sure that `valgrind` says that
-_both_ `palindrome_test` and `main` are free of memory
+*both* `palindrome_test` and `main` are free of memory
 leaks.
 
 The output of `valgrind` can be a bit overwhelming sometime, so definitely
@@ -264,7 +268,7 @@ write a function
 char *disemvowel(char *str);
 ```
 
-that takes a null-terminated string, and returns a _new_ null-terminated
+that takes a null-terminated string, and returns a *new* null-terminated
 string (i.e., it doesn't modify the original string) that contains the same
 characters in the same order, minus all the vowels. Note that resulting
 array of characters will need to be allocated, and will typically be
@@ -272,7 +276,7 @@ shorter than the input string. It would be desirable to not waste memory
 and only allocate what you actually need for the return string.
 
 So if the input string is `"goose"` you'd want to return the string
-`"gs"` _and_ you'd want to make sure you only allocated three characters
+`"gs"` *and* you'd want to make sure you only allocated three characters
 for the result (two for 'g' and 's' and one for the `\0` at the end).
 
 Again, make sure that both `disemvowel_test` and `main`

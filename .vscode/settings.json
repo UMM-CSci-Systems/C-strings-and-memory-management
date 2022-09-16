@@ -6,6 +6,7 @@
         "gtest",
         "lgtest",
         "pthread",
-        "pthreads"
+        "pthreads",
+        "REAMDE"
     ]
 }

@@ -13,21 +13,21 @@ jobs:
       env:
         cache-name: cache-gtest-lib
       with:
-        key: $${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('lib/libgtest.a') }}
+        key: $${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('~/lib/libgtest.a') }}
         path: |
-          lib/libgtest.a
-          lib/libgtest_main.a
+          ~/lib/libgtest.a
+          ~/lib/libgtest_main.a
         restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
     - if: ${{ steps.cache-gtest-lib.cache-hit != 'true' }}
       name: Install gtest manually
-      run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
+      run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo mkdir ~/lib && sudo cp -R lib/*.a ~/lib/
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Compile test code
-      run: g++ -Wall -g -o palindrome_test palindrome.c palindrome_test.cpp -Llib -lgtest -pthread -std=c++0x
+      run: g++ -Wall -g -o palindrome_test palindrome.c palindrome_test.cpp -L"~/lib" -lgtest -pthread -std=c++0x
       working-directory: palindrome
     - name: Run test
       run: ./palindrome_test

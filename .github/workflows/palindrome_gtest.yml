@@ -1,6 +1,6 @@
 name: palindrome-gtest
 
-on: [push, pull_request]
+on: push
 #    paths:
 #    - 'palindrome/**'
 

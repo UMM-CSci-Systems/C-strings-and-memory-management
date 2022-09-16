@@ -1,6 +1,6 @@
 name: disemvowel-test-valgrind
 
-on: [push, pull_request]
+on: push
 #    paths:
 #    - 'disemvowel/**'
 

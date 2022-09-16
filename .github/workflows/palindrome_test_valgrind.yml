@@ -1,6 +1,6 @@
 name: palindrome-test-valgrind
 
-on: [push, pull_request]
+on: push
 #    paths:
 #    - 'palindrome/**'
 

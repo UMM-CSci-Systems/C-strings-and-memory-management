@@ -14,7 +14,7 @@ jobs:
       env:
         cache-name: cache-gtest-lib
       with:
-        key: $${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('/usr/lib/libgtest.a') }}
+        key: $${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('~/lib/libgtest.a', '~/lib/libgtest_main.a', '~/include/**/*.h') }}
         path: |
           /usr/lib/libgtest.a
           /usr/lib/libgtest_main.a
@@ -30,7 +30,7 @@ jobs:
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Compile code
-      run: g++ -Wall -g -o disemvowel_test disemvowel.c disemvowel_test.cpp -lgtest -pthread -std=c++0x
+      run: g++ -Wall -g -o disemvowel_test disemvowel.c disemvowel_test.cpp -I"~/include" -L"~/lib" -lgtest -pthread -std=c++0x
       working-directory: disemvowel
     - name: Run test
       run: valgrind -v --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./disemvowel_test

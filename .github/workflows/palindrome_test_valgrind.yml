@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Cache gtest library
+      id: cache-gtest
       uses: actions/cache@v3
       env:
         cache-name: cache-gtest-lib
@@ -21,7 +22,7 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
-    - if: ${{ steps.cache-gtest-lib.outputs.cache-hit != 'true' }}
+    - if: ${{ steps.cache-gtest.outputs.cache-hit != 'true' }}
       name: Install gtest manually
       run: |
         sudo apt-get install libgtest-dev

@@ -21,7 +21,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-    - if: ${{ steps.cache-gtest-lib.cache-hit != 'true' }}
+    - if: ${{ steps.cache-gtest-lib.outputs.cache-hit != 'true' }}
       name: Install gtest manually
       run: |
         sudo apt-get install libgtest-dev

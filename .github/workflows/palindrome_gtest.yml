@@ -31,7 +31,7 @@ jobs:
         sudo cmake CMakeLists.txt
         sudo make
         ls ~
-        ls -R ~/include
+        ls -R ~/work
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Compile test code
